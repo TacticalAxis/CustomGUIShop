@@ -1,0 +1,210 @@
+# This is the shops config file.
+# Make sure EVERY shop has a UNIQUE name (no spaces either) as these will be used to access the shops in the commands.
+# Make sure EVERY item-id is unique, as if not, this can cause issues!
+# Lastly, make sure EVERY item-id exists - consult with the game and use /id if unsure
+vehicle:
+  display-name: "&2&lVehicles"
+  items:
+    a:
+      level-required: 0
+      item-id: 4108
+      price: 1
+      reputation: 1
+    b:
+      level-required: 1
+      item-id: 4109
+      price: 9
+      reputation: 2
+    c:
+      level-required: 1
+      item-id: 4110
+      price: 18
+      reputation: 3
+    d:
+      level-required: 1
+      item-id: 4111
+      price: 27
+      reputation: 4
+    e:
+      level-required: 1
+      item-id: 4112
+      price: 23
+      reputation: 5
+    f:
+      level-required: 1
+      item-id: 4113
+      price: 23
+      reputation: 6
+    g:
+      level-required: 1
+      item-id: 4114
+      price: 23
+      reputation: 5
+    h:
+      level-required: 1
+      item-id: 4115
+      price: 23
+      reputation: 5
+    i:
+      level-required: 1
+      item-id: 4116
+      price: 23
+      reputation: 5
+    j:
+      level-required: 1
+      item-id: 4117
+      price: 23
+      reputation: 5
+    k:
+      level-required: 1
+      item-id: 4118
+      price: 23
+      reputation: 5
+    l:
+      level-required: 1
+      item-id: 4119
+      price: 23
+      reputation: 5
+    m:
+      level-required: 1
+      item-id: 4120
+      price: 23
+      reputation: 5
+    n:
+      level-required: 1
+      item-id: 4121
+      price: 23
+      reputation: 5
+    o:
+      level-required: 1
+      item-id: 4122
+      price: 23
+      reputation: 5
+    p:
+      level-required: 1
+      item-id: 4123
+      price: 23
+      reputation: 5
+    q:
+      level-required: 1
+      item-id: 4124
+      price: 23
+      reputation: 5
+    r:
+      level-required: 1
+      item-id: 4125
+      price: 23
+      reputation: 5
+    s:
+      level-required: 1
+      item-id: 4126
+      price: 23
+      reputation: 5
+    t:
+      level-required: 1
+      item-id: 4127
+      price: 23
+      reputation: 5
+    u:
+      level-required: 1
+      item-id: 4128
+      price: 23
+      reputation: 5
+    v:
+      level-required: 1
+      item-id: 4129
+      price: 23
+      reputation: 5
+    w:
+      level-required: 1
+      item-id: 4130
+      price: 23
+      reputation: 5
+    x:
+      level-required: 1
+      item-id: 4131
+      price: 23
+      reputation: 5
+    y:
+      level-required: 1
+      item-id: 4132
+      price: 23
+      reputation: 5
+    z:
+      level-required: 1
+      item-id: 4133
+      price: 23
+      reputation: 5
+    aa:
+      level-required: 1
+      item-id: 4134
+      price: 23
+      reputation: 5
+    ab:
+      level-required: 1
+      item-id: 4135
+      price: 23
+      reputation: 5
+    ac:
+      level-required: 1
+      item-id: 4136
+      price: 23
+      reputation: 5
+    ad:
+      level-required: 1
+      item-id: 4137
+      price: 23
+      reputation: 5
+    ae:
+      level-required: 1
+      item-id: 4138
+      price: 23
+      reputation: 5
+    af:
+      level-required: 1
+      item-id: 4139
+      price: 23
+      reputation: 5
+    ag:
+      level-required: 1
+      item-id: 4140
+      price: 23
+      reputation: 5
+    ah:
+      level-required: 1
+      item-id: 4141
+      price: 23
+      reputation: 5
+    ai:
+      level-required: 1
+      item-id: 4142
+      price: 23
+      reputation: 5
+    aj:
+      level-required: 1
+      item-id: 4143
+      price: 23
+      reputation: 5
+    ak:
+      level-required: 1
+      item-id: 4144
+      price: 23
+      reputation: 5
+    al:
+      level-required: 1
+      item-id: 4145
+      price: 23
+      reputation: 5
+    am:
+      level-required: 1
+      item-id: 4146
+      price: 23
+      reputation: 5
+gun:
+  display-name: "&c&lGuns"
+  items:
+    a:
+      level-required: 0
+      item-id: 4218
+      price: 23
+      reputation: 5

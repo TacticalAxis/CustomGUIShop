@@ -1,0 +1,21 @@
+name: CustomGUIShop
+main: io.github.tacticalaxis.customguishop.CustomGUIShop
+version: 1.0
+description: A plugin has a shop GUI
+author: NathanD256
+prefix: CGS
+depend: [Vault]
+load: POSTWORLD
+commands:
+  rep:
+    usage: /<command>
+    description: Command to see reputation
+  shop:
+    usage: /<command>
+    description: A inventory open command
+  reloadshop:
+    usage: /<command>
+    description: Command to reload configuration
+  id:
+    usage: /<command>
+    description: Command to show ID of a held item

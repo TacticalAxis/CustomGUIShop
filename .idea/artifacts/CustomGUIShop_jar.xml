@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="CustomGUIShop:jar">
+    <output-path>$PROJECT_DIR$/../../../../../../TestingServer1.7.10/plugins</output-path>
+    <root id="archive" name="CustomGUIShop.jar">
+      <element id="module-output" name="CustomGUIShop" />
+    </root>
+  </artifact>
+</component>

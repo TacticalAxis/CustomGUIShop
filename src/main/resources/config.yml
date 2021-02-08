@@ -1,0 +1,28 @@
+# This is the main config file for the plugin. Make sure there are quotes "" around strings.
+reputation:
+  on-kill: 20
+  # do %level% to show player level
+  new-level-message: "&6&lYou have reached level &a&l%level%"
+  # do %reputation% to show reputation amount, %level% to show level
+  on-query-message: "&2Your reputation is &6%reputation%&2, Level: &6%level%"
+  # do %action% to show <buying/selling/killing>, %amount% to show amount, %target% to show target
+  on-action-message: "&aYou earned &6+%amount% RP &afor %action% &6%target%"
+
+# for any entry, make sure there is 16 or less characters (including characters like '&c')
+scoreboard:
+  display-name: "&6&lMy Server"
+  reputation-name: "&cReputation"
+  level-name: "&cLevel"
+  nextlevel-name: "&cNext Level"
+  balance-name: "&cBalance"
+
+# shop settings
+shop:
+  transaction-success: "&6Transaction success!"
+  transaction-fail: "&cTransaction fail!"
+  item-not-found-in-player-inventory: "&cYou need to have the item to sell it!"
+  # do %required% to show required level, %reason% to show buy/sell
+  level-too-low: "&cYou need level &6%required% &cto %reason% this!"
+  item-not-in-shop: "&cItem not in shop!"
+  buy-message: "&aYou bought %item% [-$%amount%]"
+  sell-message: "&aYou sold %item% [+$%amount%]"
