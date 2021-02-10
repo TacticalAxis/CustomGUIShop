@@ -18,6 +18,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.scheduler.BukkitRunnable;
 
 @SuppressWarnings("ALL")
 public class PlayerInventoryEvents implements Listener {
@@ -32,7 +33,7 @@ public class PlayerInventoryEvents implements Listener {
                     if (event.getAction() == InventoryAction.MOVE_TO_OTHER_INVENTORY) {
                         return;
                     }
-                    Player player = (Player) event.getWhoClicked();
+                    final Player player = (Player) event.getWhoClicked();
                     ItemStack item = event.getCurrentItem();
                     if (item.hasItemMeta()) {
                         if (item.getItemMeta().getDisplayName() != null) {
@@ -49,7 +50,11 @@ public class PlayerInventoryEvents implements Listener {
                                     }
                                 }
                             } else if (item.getItemMeta().getDisplayName().equals(InventoryManager.exitButton)) {
-                                player.closeInventory();
+                                new BukkitRunnable() {
+                                    public void run() {
+                                        player.closeInventory();
+                                    }
+                                }.runTaskLater(CustomGUIShop.getInstance(), 5L);
                             }
                         } else {
                             buyItem(player, item);

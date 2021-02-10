@@ -13,7 +13,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-@SuppressWarnings("ALL")
 public class InventoryManager {
 
     public static final String previousButton = ChatColor.BLUE + "" + ChatColor.BOLD + "Previous Page";
@@ -30,7 +29,7 @@ public class InventoryManager {
         try {
             Inventory inv = CustomGUIShop.inventories.get(inventoryName).get(page + 1);
             player.openInventory(inv);
-        } catch (ArrayIndexOutOfBoundsException ignored) {} catch (IndexOutOfBoundsException ignored) {}
+        } catch (IndexOutOfBoundsException ignored) {}
     }
 
     // go to previous page of inventory
@@ -38,17 +37,23 @@ public class InventoryManager {
         try {
             Inventory inv = CustomGUIShop.inventories.get(inventoryName).get(page - 1);
             player.openInventory(inv);
-        } catch (ArrayIndexOutOfBoundsException ignored) {} catch (IndexOutOfBoundsException ignored) {}
+        } catch (IndexOutOfBoundsException ignored) {}
     }
 
     // generate inventories
     public static HashMap<String, ArrayList<Inventory>> generateAll() {
-        HashMap<String, ArrayList<Inventory>> list = new HashMap<String, ArrayList<Inventory>>();
+        HashMap<String, ArrayList<Inventory>> list = new HashMap<>();
         int count = 0;
         int currentInv = 0;
+
+        ItemStack blank = new ItemStack(Material.STAINED_GLASS_PANE, 1, (byte) 0);
+        ItemMeta meta = blank.getItemMeta();
+        meta.setDisplayName(" ");
+        blank.setItemMeta(meta);
+
         for (String inventoryName : ConfigurationManager.getInstance().getShopConfiguration().getKeys(false)) {
-            ArrayList<ItemStack> inventoryItems = new ArrayList<ItemStack>();
-            ArrayList<Inventory> inventories = new ArrayList<Inventory>();
+            ArrayList<ItemStack> inventoryItems = new ArrayList<>();
+            ArrayList<Inventory> inventories = new ArrayList<>();
             String displayName = ChatColor.translateAlternateColorCodes('&', ConfigurationManager.getInstance().getShopConfiguration().getConfigurationSection(inventoryName).getString("display-name"));
 
             // add items to total list
@@ -56,14 +61,21 @@ public class InventoryManager {
             for (String item : items.getKeys(false)) {
                 ItemStack itemStack = new ItemStack(Material.getMaterial(items.getConfigurationSection(item).getInt("item-id")));
                 ItemMeta im = itemStack.getItemMeta();
-                ArrayList<String> lore = new ArrayList<String>();
+                ArrayList<String> lore = new ArrayList<>();
                 lore.add("§cPrice: $" + items.getConfigurationSection(item).getInt("price"));
                 lore.add("§aLvl. " + items.getConfigurationSection(item).getInt("level-required"));
                 lore.add("§eReputation: " + items.getConfigurationSection(item).getInt("reputation"));
                 im.setLore(lore);
                 itemStack.setItemMeta(im);
                 inventoryItems.add(itemStack);
+                inventoryItems.add(blank);
             }
+
+            for (int i = 0; i < (inventoryItems.size() % 36); i++) {
+                inventoryItems.add(blank);
+            }
+
+            System.out.println(inventoryItems.size());
 
             // add to individual inventories
             for (ItemStack i : inventoryItems) {
@@ -80,13 +92,26 @@ public class InventoryManager {
                     currentInv += 1;
                     inventories.add(Bukkit.createInventory(null, 54, displayName.trim() + ChatColor.RESET + " (Page " + (currentInv + 1) + ")"));
                 }
-                inventories.get(currentInv).addItem(i);
+                inventories.get(currentInv).setItem(inventories.get(currentInv).firstEmpty(), i);
             }
             addButtons(inventories.get(currentInv));
             list.put(inventoryName, inventories);
             count = 0;
             currentInv = 0;
         }
+
+        for (ArrayList<Inventory> inventoryList : list.values())
+            for (Inventory inventory : inventoryList) {
+                for (int i = 0; i < inventory.getSize(); i++) {
+                    if (inventory.getItem(i) == null) {
+                        inventory.setItem(i, blank);
+                    } else {
+                        if (inventory.getItem(i).getType() == null) {
+                            inventory.setItem(i, blank);
+                        }
+                    }
+                }
+            }
         return list;
     }
 

@@ -68,7 +68,7 @@ public class GameScoreboardManager {
                     objective.setDisplayName(title);
                     reputation.setPrefix(String.valueOf(ReputationManager.getReputation(player)));
                     level.setPrefix(String.valueOf(ReputationManager.getReputationLevel(player)));
-                    nextLevel.setPrefix(String.valueOf(ReputationManager.getNextLevel(player)));
+                    nextLevel.setPrefix(String.valueOf(ReputationManager.getReputation(player)) + "/" + String.valueOf(ReputationManager.getReputation(player) + ReputationManager.getNextLevel(player)));
                     balance.setPrefix(String.valueOf(CustomGUIShop.getInstance().getEconomy().getBalance(player)));
                     objective2.getScore(player).setScore(ReputationManager.getReputationLevel(player));
                 } catch (Exception e) {

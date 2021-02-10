@@ -29,13 +29,15 @@ public class ReputationManager {
     public static void addReputation(Player player, int amount, String reason, String target) {
         ConfigurationSection rep = ConfigurationManager.getInstance().getMainConfiguration().getConfigurationSection(Strings.CONFIG_REPUTATION_SECTION);
         int old = getReputation(player);
-
+        int required = getNextLevel(player);
+        if (amount >= required) {
+            if (getReputationLevel(player) < getNextLevelOverall(player)) {
+                player.sendMessage(ChatColor.translateAlternateColorCodes('&', rep.getString(Strings.CONFIG_REPUTATION_LEVEL_UPGRADE).replace("%level%", String.valueOf(getReputationLevel(player) + 1))));
+            }
+        }
         ConfigurationManager.getInstance().getPlayerConfiguration().getConfigurationSection(Strings.CONFIG_REPUTATION_SECTION).set(player.getUniqueId().toString(), old + amount);
         ConfigurationManager.getInstance().savePlayerConfiguration();
         player.sendMessage(ChatColor.translateAlternateColorCodes('&', rep.getString(Strings.CONFIG_REPUTATION_ON_ACTION_MESSAGE).replace("%action%", reason).replace("%amount%", String.valueOf(amount)).replace("%target%", target)));
-
-        if (getNextLevel(player) <= (getReputation(player)) + amount)
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&', rep.getString(Strings.CONFIG_REPUTATION_LEVEL_UPGRADE).replace("%level%", String.valueOf(getReputationLevel(player)))));
     }
 
     // get the amount of RP required for the next level
@@ -44,6 +46,16 @@ public class ReputationManager {
         for (int level = 0; level <= MAX_LEVEL; level++) {
             if (Math.pow(2, level) > current) {
                 return (int) (Math.pow(2, level) - current);
+            }
+        }
+        return 0;
+    }
+
+    public static int getNextLevelOverall(Player player) {
+        int current = getReputation(player);
+        for (int level = 0; level <= MAX_LEVEL; level++) {
+            if (Math.pow(2, level) > current) {
+                return level + 1;
             }
         }
         return 0;
